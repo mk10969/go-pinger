@@ -1,0 +1,26 @@
+version: "3.1"
+
+services:
+  mysql_test:
+    image: mysql:5.7
+    command: >
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USERNAME}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - TZ=Asia/Tokyo
+    ports:
+      - "${MYSQL_PORT}:3306"
+    # volumes:
+    #   - dbdata:/var/lib/mysql
+
+  # volumes:
+  #   dbdata:
+
+  resis_test:
+    image: redis:latest
+    ports:
+      - "${REDIS_PORT}:6379"
